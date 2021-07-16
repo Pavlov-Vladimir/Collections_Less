@@ -7,11 +7,12 @@ using System.Threading.Tasks;
 
 namespace MyList_App
 {
-    class MyList<T>// : IEnumerable<T>, IEnumerator<T>
+    class MyList<T> : IEnumerable<T>
     {
         private T[] _list;
         private int _count;
         private int _capacity;
+        private int _position = -1;
 
         public int Count => _count;
         public int Capacity
@@ -34,14 +35,16 @@ namespace MyList_App
             {
                 if (index >= 0 && index < _count)
                     return _list[index];
-                Console.WriteLine("Index out of range.");
+                else
+                    Console.WriteLine("Index out of range.");
                 return default;
             }
             set
             {
                 if (index >= 0 && index < _count)
                     _list[index] = value;
-                Console.WriteLine("Index out of range.");
+                else
+                    Console.WriteLine("Index out of range.");
             }
         }
 
@@ -60,7 +63,7 @@ namespace MyList_App
 
         public void CopyTo(T[] array)
         {
-            if(_count > array.Length)
+            if (_count > array.Length)
                 for (int i = 0; i < array.Length; i++)
                     array[i] = _list[i];
             else
@@ -76,5 +79,28 @@ namespace MyList_App
             _count++;
         }
 
+        private void Reset() => _position = -1;
+
+        public IEnumerator<T> GetEnumerator()
+        {
+            while (true)
+            {
+                if (_position < _count - 1)
+                {
+                    _position++;
+                    yield return _list[_position];
+                }
+                else
+                {
+                    Reset();
+                    yield break;
+                }
+            }
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return this as IEnumerator;
+        }
     }
 }
