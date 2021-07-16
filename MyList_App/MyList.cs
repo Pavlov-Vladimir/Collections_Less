@@ -82,15 +82,14 @@ namespace MyList_App
             _count = 0;
         }
 
-        //TODO (object)_list[i] == (object)item don't work
         public int IndexOf(T item)
         {
             for (int i = 0; i < _count; i++)
             {
-                if ((object)_list[i] == (object)item)
+                if (_list[i].ToString() == item.ToString())
                     return i;
             }
-            Console.WriteLine("There is no item in this collection.");
+            Console.WriteLine($"There is no item '{item.ToString()}' in this collection.");
             return -1;
         }
 
@@ -101,17 +100,18 @@ namespace MyList_App
                 return false;
             else
             {
-                T[] array = new T[_count - 1];
-                for (int i = 0; i < index; i++)
-                    array[i] = _list[i];
-
-                for (int i = index + 1; i < array.Length; i++)
-                    array[i] = _list[i];
+                T[] array = new T[_capacity - 1];
+                for (int i = 0, j = 0; i < _capacity; i++, j++)
+                {
+                    if (i == index)
+                        i++;
+                    array[j] = _list[i];
+                }
 
                 _list = array;
                 _count--;
-                return true;
             }
+            return true;
         }
 
         private void Reset() => _position = -1;
