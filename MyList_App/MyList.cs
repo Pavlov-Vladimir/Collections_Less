@@ -79,6 +79,44 @@ namespace MyList_App
             _count++;
         }
 
+        public void Clear()
+        {
+            _list = new T[_capacity];
+            _count = 0;
+        }
+
+        //TODO (object)_list[i] == (object)item don't work
+        public int IndexOf(T item)
+        {
+            for (int i = 0; i < _count; i++)
+            {
+                if ((object)_list[i] == (object)item)
+                    return i;
+            }
+            Console.WriteLine("There is no item in this collection.");
+            return -1;
+        }
+
+        public bool Remove(T item)
+        {
+            int index = IndexOf(item);
+            if (index == -1)
+                return false;
+            else
+            {
+                T[] array = new T[_count - 1];
+                for (int i = 0; i < index; i++)
+                    array[i] = _list[i];
+
+                for (int i = index + 1; i < array.Length; i++)
+                    array[i] = _list[i];
+
+                _list = array;
+                _count--;
+                return true;
+            }
+        }
+
         private void Reset() => _position = -1;
 
         public IEnumerator<T> GetEnumerator()
