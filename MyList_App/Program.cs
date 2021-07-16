@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace MyList_App
 {
@@ -6,7 +7,14 @@ namespace MyList_App
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            MyList<int> list = new();
+            list.Add(2);
+            list.Add(2);
+            list.Add(2);
+            list.Add(2);
+            list.Add(2);
+            list.Add(2);
+
         }
     }
 }
