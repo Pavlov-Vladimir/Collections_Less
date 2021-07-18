@@ -6,7 +6,7 @@ namespace MyDictionary_App
 {
     class MyDictionary <Tkey, Tvalue> : IEnumerable<KeyValuePair<Tkey, Tvalue>>
     {
-        KeyValuePair<Tkey, Tvalue>[] _dictionary;
+        KeyValuePair<Tkey, Tvalue>[] _dictionary = null;
         private int _count;
         private int _capacity;
         private int _position = -1;
@@ -66,8 +66,7 @@ namespace MyDictionary_App
             {
                 if (_count == _capacity)
                     Capacity *= 2;
-                _dictionary[_count].Key = key;
-                _dictionary[_count].Value = value;
+                _dictionary[_count] = new KeyValuePair<Tkey, Tvalue>(key, value);               
                 _count++;
             }
         }
