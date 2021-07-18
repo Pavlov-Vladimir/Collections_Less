@@ -119,9 +119,18 @@ namespace MyDictionary_App
                         i++;
                     array[j] = _dictionary[i];
                 }
+                _dictionary = array;
+                _count--;
             }
             else
                 Console.WriteLine("There is no such key in the dictionary.");
+        }
+
+        public void Clear()
+        {
+            _capacity = 4;
+            _dictionary = new KeyValuePair<Tkey, Tvalue>[_capacity];
+            _count = 0;
         }
 
         public IEnumerator<KeyValuePair<Tkey, Tvalue>> GetEnumerator()
@@ -141,10 +150,8 @@ namespace MyDictionary_App
             }
         }
 
-        private void Reset()
-        {
-            _position = -1;
-        }
+        private void Reset() => _position = -1;
+        
 
         IEnumerator IEnumerable.GetEnumerator()
         {
