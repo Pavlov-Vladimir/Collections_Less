@@ -133,6 +133,18 @@ namespace MyDictionary_App
             _count = 0;
         }
 
+        public override string ToString()
+        {
+            string stringDicionary = "The dictionary has:\n";
+            foreach (var pair in _dictionary)
+            {
+                if (pair == null)
+                    break;
+                stringDicionary += $" {pair.ToString()}\n";
+            }
+            return stringDicionary;
+        }
+
         public IEnumerator<KeyValuePair<Tkey, Tvalue>> GetEnumerator()
         {
             while (true)

@@ -13,6 +13,7 @@ namespace MyDictionary_App
             dict.Add(3, "Blabla");
 
             Console.WriteLine(dict.Capacity + " " + dict.Count);
+            Console.WriteLine(dict.ToString());
         }
     }
 }
