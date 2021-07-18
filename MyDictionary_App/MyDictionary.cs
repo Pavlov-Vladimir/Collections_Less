@@ -135,12 +135,20 @@ namespace MyDictionary_App
 
         public override string ToString()
         {
-            string stringDicionary = "The dictionary has:\n";
-            foreach (var pair in _dictionary)
+            string stringDicionary;
+            if (_count == 0)
             {
-                if (pair == null)
-                    break;
-                stringDicionary += $" {pair.ToString()}\n";
+                stringDicionary = "The dictionary is empty.";
+            }
+            else
+            {
+                stringDicionary = "The dictionary has:\n";
+                foreach (var pair in _dictionary)
+                {
+                    if (pair == null)
+                        break;
+                    stringDicionary += $" {pair.ToString()}\n";
+                } 
             }
             return stringDicionary;
         }
