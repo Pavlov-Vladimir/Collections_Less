@@ -6,7 +6,7 @@ namespace MyDictionary_App
 {
     class MyDictionary <Tkey, Tvalue> : IEnumerable<KeyValuePair<Tkey, Tvalue>>
     {
-        KeyValuePair<Tkey, Tvalue>[] _dictionary = null;
+        private KeyValuePair<Tkey, Tvalue>[] _dictionary = null;
         private int _count;
         private int _capacity;
         private int _position = -1;
@@ -172,7 +172,6 @@ namespace MyDictionary_App
 
         private void Reset() => _position = -1;
         
-
         IEnumerator IEnumerable.GetEnumerator()
         {
             return this as IEnumerator;
