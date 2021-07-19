@@ -37,13 +37,21 @@ namespace Collections_App
 
             arr2 = AddEvens(arr);
 
+            IEnumerable arr3 = GetEvensFromArray(arr);
+
             foreach (int item in arr)
             {
                 Console.Write(item + " ");
             }
             Console.WriteLine("\n" + new string('-', 15));
 
-            foreach (int  item in arr2)
+            foreach (int item in arr2)
+            {
+                Console.Write(item + " ");
+            }
+            Console.WriteLine("\n" + new string('-', 15));
+
+            foreach (int  item in arr3)
             {
                 Console.Write(item + " ");
             }
